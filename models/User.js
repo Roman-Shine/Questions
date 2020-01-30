@@ -6,7 +6,7 @@ const schema = new Schema({
   password: { type: String, required: true },
   name: { type: String, },
   secondName: { type: String, },
-  questions: [{ type: Types.ObjectId, ref: 'Questions', }],
+  questions: [{ type: Types.ObjectId, ref: 'Question', }],
 });
 
 module.exports = model('User', schema);

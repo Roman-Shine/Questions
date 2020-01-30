@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { store } from './redux/store';
-import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
 import { NavBar } from './components/NavBar';
 import { Loader } from './components/Loader';
 import { Provider } from 'react-redux';
+import { useAuth } from './hooks/auth.hook';
 import { useRoutes } from './routes';
 import 'materialize-css';
 
