@@ -30,7 +30,6 @@ router.get('/:login', async (req, res) => {
       return res.redirect('/users');
     }
     const userForResponse = {
-      email: user.email,
       login: user.login,
       name: user.name,
       secondName: user.secondName,
