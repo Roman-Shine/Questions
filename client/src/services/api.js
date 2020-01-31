@@ -7,4 +7,7 @@ export const api = {
   users: {
     list: '/api/users'
   },
+  questions: {
+    postQuestion: '/api/questions/generate'
+  },
 };

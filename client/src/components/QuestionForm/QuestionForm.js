@@ -1,16 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import * as PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMessage } from '../../hooks/message.hook';
+import {fetchPostQuestion, postQuestionError} from '../../redux';
 
 export const QuestionForm = ({ _id }) => {
+  const message = useMessage();
 
   useEffect(() => {
     window.M.updateTextFields();
   }, []);
 
+  const loading = useSelector(store => store.postQuestions.postLoading);
+  const error = useSelector(store => store.postQuestions.postError);
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     question: '',
-    _id
+    owner: _id
   });
+
+  useEffect(() => {
+    message(error, 'red');
+    dispatch(postQuestionError(''));
+  }, [message, error, dispatch]);
+
   const inputHandler = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -20,7 +33,7 @@ export const QuestionForm = ({ _id }) => {
     }
   };
   const submitQuestionHandler = () => {
-    console.log(formData);
+    dispatch(fetchPostQuestion(formData));
   };
 
   return (
@@ -44,7 +57,7 @@ export const QuestionForm = ({ _id }) => {
         <button
           className="btn teal"
           onClick={ submitQuestionHandler }
-          // disabled={ loading }
+          disabled={ loading }
         >
           Задать вопрос
         </button>
