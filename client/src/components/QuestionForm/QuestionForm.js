@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import * as PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMessage } from '../../hooks/message.hook';
-import {fetchPostQuestion, postQuestionError} from '../../redux';
+import { fetchPostQuestion, postQuestionError } from '../../redux';
 
 export const QuestionForm = ({ _id }) => {
   const message = useMessage();
@@ -13,6 +13,7 @@ export const QuestionForm = ({ _id }) => {
 
   const loading = useSelector(store => store.postQuestions.postLoading);
   const error = useSelector(store => store.postQuestions.postError);
+  const postQuestion = useSelector(store => store.postQuestions.postQuestion);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     question: '',
@@ -24,6 +25,12 @@ export const QuestionForm = ({ _id }) => {
     dispatch(postQuestionError(''));
   }, [message, error, dispatch]);
 
+  useEffect(() => {
+    if (postQuestion) {
+      message('Ваш вопрос отправлен, когда пользователь ответит на него, вы увидете его в списке ниже', 'teal');
+    }
+  }, [postQuestion, message]);
+
   const inputHandler = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -34,6 +41,10 @@ export const QuestionForm = ({ _id }) => {
   };
   const submitQuestionHandler = () => {
     dispatch(fetchPostQuestion(formData));
+    setFormData({
+      question: '',
+      owner: _id
+    });
   };
 
   return (

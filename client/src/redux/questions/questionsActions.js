@@ -18,11 +18,16 @@ export const fetchPostQuestion = (formData) => {
         method: 'POST',
         data: {...formData}
       });
-      dispatch(postQuestionSuccess(data));
+      dispatch(postQuestionSuccess(data.newQuestion));
     } catch (error) {
-      dispatch(postQuestionError(
-        error.response.data.errors[0].msg || error.response.data.message || error.message
-      ));
+      if (error.response.data.errors && error.response.data.errors.length) {
+        dispatch(postQuestionError(
+          error.response.data.errors[0].msg
+        ));
+      } else {
+        dispatch(postQuestionError(error.response.data.message || error.message));
+      }
+
     }
   };
 };
