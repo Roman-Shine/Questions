@@ -1,36 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { store } from './redux/store';
-import { AuthContext } from './context/AuthContext';
+import { useSelector } from 'react-redux';
 import { NavBar } from './components/NavBar';
 import { Loader } from './components/Loader';
-import { Provider } from 'react-redux';
-import { useAuth } from './hooks/auth.hook';
 import { useRoutes } from './routes';
 import 'materialize-css';
 
 function App() {
-  const { login, logout, token, userId, ready } = useAuth();
-  const isAuthenticated = !!token;
+  const loading = useSelector(state => state.login.loading);
+  const loginData = useSelector(state => state.login.loginData);
+
+  let isAuthenticated = loginData ? !!loginData.token : false;
   const routes = useRoutes(isAuthenticated);
 
-  if (!ready) {
+  if (loading) {
     return <Loader />
   }
 
   return (
-    <AuthContext.Provider value={{
-      login, logout, token, userId, isAuthenticated
-    }}>
-      <Provider store={ store }>
-        <Router>
-          <NavBar isAuth={ isAuthenticated } />
-          <div className="container">
-            { routes }
-          </div>
-        </Router>
-      </Provider>
-    </AuthContext.Provider>
+    <Router>
+      <NavBar isAuth={ isAuthenticated } />
+      <div className="container">
+        { routes }
+      </div>
+    </Router>
   );
 }
 

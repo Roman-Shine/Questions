@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLogin, loginError } from '../../redux';
 import { useMessage } from '../../hooks/message.hook';
-import { AuthContext } from '../../context/AuthContext';
 
 export const LoginForm = () => {
-  const auth = useContext(AuthContext);
   const loading = useSelector(state => state.login.loading);
   const loginData = useSelector(state => state.login.loginData);
   const error = useSelector(state => state.login.error);
@@ -20,9 +18,8 @@ export const LoginForm = () => {
   useEffect(() => {
     if (loginData) {
       message('Успешная авторизация', 'teal');
-      auth.login(loginData.token, loginData.userId);
     }
-  }, [loginData, message, auth]);
+  }, [loginData, message]);
 
   const [form, setForm] = useState({
     email: '',

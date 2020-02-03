@@ -1,5 +1,6 @@
 import {
   FETCH_LOGIN,
+  FETCH_LOGOUT,
   FETCH_LOGIN_SUCCESS,
   FETCH_LOGIN_ERROR
 } from './loginTypes';
@@ -20,14 +21,23 @@ export const loginReducer = (state = initialState, action) => {
       };
     case FETCH_LOGIN_SUCCESS:
       return {
+        ...state,
         loading: false,
         loginData: action.payload
       };
     case FETCH_LOGIN_ERROR:
       return {
+        ...state,
         loading: false,
         loginData: null,
         error: action.payload
+      };
+    case FETCH_LOGOUT:
+      return {
+        ...state,
+        loading: false,
+        loginData: null,
+        error: ''
       };
     default: return state
   }

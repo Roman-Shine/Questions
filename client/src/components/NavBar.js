@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux';
 
 export const NavBar = ({ isAuth = false }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const auth = useContext(AuthContext);
   const logoutHandler = (event) => {
     event.preventDefault();
-    auth.logout();
+    dispatch(logout());
     history.push('/')
   };
 
