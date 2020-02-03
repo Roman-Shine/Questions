@@ -3,7 +3,7 @@ import { registerReducer } from './register/registerReducer';
 import { loginReducer } from './login/loginReducer';
 import { usersReducer } from './users/usersReducer';
 import { userReducer } from './user/userReducer';
-import { questionsReducer } from './questions/questionsReducer';
+// import { questionsReducer } from './questions/questionsReducer';
 import { postQuestionsReducer } from './questions/questionsReducer';
 
 export const rootReducer = combineReducers({
@@ -11,6 +11,6 @@ export const rootReducer = combineReducers({
   login: loginReducer,
   users: usersReducer,
   user: userReducer,
-  questions: questionsReducer,
+  // questions: questionsReducer,
   postQuestions: postQuestionsReducer
 });

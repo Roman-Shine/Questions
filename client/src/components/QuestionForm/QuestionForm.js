@@ -48,7 +48,7 @@ export const QuestionForm = ({ _id }) => {
   };
 
   return (
-    <div>
+    <div className="mb-2">
       <h4 className="mt-0">Задайте анонимный вопрос:</h4>
       <div className="pt-1">
         <div className="input-field">

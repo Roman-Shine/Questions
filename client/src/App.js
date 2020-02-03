@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavBar } from './components/NavBar';
 import { Loader } from './components/Loader';
 import { useRoutes } from './routes';
+import { loginSuccess } from './redux';
+import { StorageName } from './redux/login/loginTypes';
 import 'materialize-css';
-import { loginSuccess } from "./redux";
-import {StorageName} from "./redux/login/loginTypes";
 
 function App() {
   const loading = useSelector(state => state.login.loading);
@@ -22,6 +22,12 @@ function App() {
       dispatch(loginSuccess(storageData));
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (loginData) {
+      localStorage.setItem(StorageName, JSON.stringify(loginData));
+    }
+  }, [loginData]);
 
   if (loading) {
     return <Loader />

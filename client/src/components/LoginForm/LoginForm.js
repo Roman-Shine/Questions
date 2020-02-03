@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLogin, loginError } from '../../redux';
 import { useMessage } from '../../hooks/message.hook';
-import { StorageName } from "../../redux/login/loginTypes";
 
 export const LoginForm = () => {
   const loading = useSelector(state => state.login.loading);
-  const loginData = useSelector(state => state.login.loginData);
   const error = useSelector(state => state.login.error);
   const dispatch = useDispatch();
   const message = useMessage();
@@ -15,13 +13,6 @@ export const LoginForm = () => {
     message(error, 'red');
     dispatch(loginError(''));
   }, [error, message, dispatch]);
-
-  useEffect(() => {
-    if (loginData) {
-      localStorage.setItem(StorageName, JSON.stringify(loginData));
-      message('Успешная авторизация', 'teal');
-    }
-  }, [loginData, message]);
 
   const [form, setForm] = useState({
     email: '',
@@ -34,6 +25,7 @@ export const LoginForm = () => {
   const loginHandler = async () => {
     try {
       await dispatch(fetchLogin({...form}));
+      message('Успешная авторизация', 'teal');
     } catch (e) {}
   };
 

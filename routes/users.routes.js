@@ -1,6 +1,7 @@
 const { Router } = require('express');
 // const auth = require('../middlewares/auth.middleware');
 const User = require('../models/User');
+const Question = require('../models/Question');
 
 const router = Router();
 
@@ -29,11 +30,12 @@ router.get('/:login', async (req, res) => {
     if (!user) {
       return res.redirect('/users');
     }
+    const questions = await Question.find({ owner: user._id });
     const userForResponse = {
       login: user.login,
       name: user.name,
       secondName: user.secondName,
-      questions: user.questions,
+      questions: questions,
       _id: user._id
     };
     res.json(userForResponse);

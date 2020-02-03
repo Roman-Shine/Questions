@@ -13,16 +13,18 @@ export const UserCard = ({ user }) => {
 
   return (
     <div className="col s3">
-      <div className="card userCard">
+      <div className="card userCard indigo lighten-5">
         <div className="card-image">
           <img src={userDefaultImage} alt="Avatar"/>
-          <span className="card-title teal-text">Впоросов: { user.questions.length }</span>
         </div>
         <div className="card-content">
           <h6>
             {user.login}
           </h6>
-          <p>{user.name} {user.secondName}</p>
+          <div className="mb-05">
+            <p>{user.name} {user.secondName}</p>
+          </div>
+          <p>Впоросов: { user.questions.length }</p>
         </div>
         <div className="card-action">
           <button

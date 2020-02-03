@@ -6,12 +6,12 @@ import {
   FETCH_USER_ERROR
 } from './userTypes';
 
-export const fetchUser = (id) => {
+export const fetchUser = (login) => {
   return async (dispatch) => {
     dispatch(user());
     try {
       const { data } = await axios({
-        url: `${api.users.list}/${id}`,
+        url: `${api.users.list}/${login}`,
         method: 'GET'
       });
       dispatch(userSuccess(data));

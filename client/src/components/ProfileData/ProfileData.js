@@ -4,18 +4,18 @@ import userDefaultImage from '../../assets/img/user-default.png';
 
 export const ProfileData = ({ login, name, secondName, questions }) => {
   return (
-    <div className="card">
+    <div className="card indigo lighten-5">
       <div className="card-image">
         <img src={userDefaultImage} alt="Avatar"/>
       </div>
       <div className="card-content">
-        <h6 className="indigo-text">
+        <h5 className="indigo-text mt-0">
           {login}
-        </h6>
+        </h5>
         <p>{name} {secondName}</p>
       </div>
       <div className="card-action">
-        <span className="card-title teal-text">Впоросов: {questions.length}</span>
+        <span>Впоросов: {questions.length}</span>
       </div>
     </div>
   );
