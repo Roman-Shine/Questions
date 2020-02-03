@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavBar } from './components/NavBar';
 import { Loader } from './components/Loader';
 import { useRoutes } from './routes';
-import { loginSuccess } from './redux';
+import {login, loginSuccess} from './redux';
 import { StorageName } from './redux/login/loginTypes';
 import 'materialize-css';
 
 function App() {
-  const loading = useSelector(state => state.login.loading);
   const loginData = useSelector(state => state.login.loginData);
   const dispatch = useDispatch();
 
@@ -17,6 +16,7 @@ function App() {
   const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
+    dispatch(login());
     const storageData = JSON.parse(localStorage.getItem(StorageName));
     if (storageData && storageData.token) {
       dispatch(loginSuccess(storageData));
@@ -29,7 +29,7 @@ function App() {
     }
   }, [loginData]);
 
-  if (loading) {
+  if (!loginData) {
     return <Loader />
   }
 

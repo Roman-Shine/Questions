@@ -32,10 +32,10 @@ export const useRoutes = isAuthenticated => {
       <Route path="/" exact>
         <AuthPage />
       </Route>
-      <Route path="/users" exact>
+      <Route path="/users">
         <UsersPage />
       </Route>
-      <Route path="/user/:login" exact>
+      <Route path="/user/:login">
         <UserPage />
       </Route>
       <Redirect to="/" />
