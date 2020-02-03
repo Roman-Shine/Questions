@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const QuestionsWithAnswersCard = ({ question }) => {
-  console.log(question);
   return (
     <div className="card indigo lighten-5">
       <div className="card-content">
