@@ -30,7 +30,7 @@ router.get('/:login', async (req, res) => {
     if (!user) {
       return res.redirect('/users');
     }
-    const questions = await Question.find({ owner: user._id });
+    const questions = await Question.find({ owner: user._id, answer: { $ne: '' } });
     const userForResponse = {
       login: user.login,
       name: user.name,
