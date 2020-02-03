@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../redux';
+import { StorageName } from '../redux/login/loginTypes';
 
 export const NavBar = ({ isAuth = false }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const logoutHandler = (event) => {
     event.preventDefault();
+    localStorage.removeItem(StorageName);
     dispatch(logout());
     history.push('/')
   };

@@ -4,35 +4,35 @@ import {
   FETCH_LOGIN,
   FETCH_LOGOUT,
   FETCH_LOGIN_SUCCESS,
-  FETCH_LOGIN_ERROR
+  FETCH_LOGIN_ERROR,
+  StorageName
 } from './loginTypes';
-
-const STORAGE_NAME = 'userData';
 
 export const fetchLogin = (formData) => {
   return async (dispatch) => {
     dispatch(login());
-    const storageData = JSON.parse(localStorage.getItem(STORAGE_NAME));
+    const storageData = JSON.parse(localStorage.getItem(StorageName));
     if (storageData && storageData.token) {
       dispatch(loginSuccess(storageData));
-    } else {
+    } else if (formData) {
       try {
         const { data } = await axios({
           url: api.auth.login,
           method: 'POST',
           data: {...formData}
         });
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(data));
+        localStorage.setItem(StorageName, JSON.stringify(data));
         dispatch(loginSuccess(data));
       } catch (error) {
         dispatch(loginError(error.response.data.message || error.message));
       }
+    } else {
+      dispatch(loginSuccess(null));
     }
   };
 };
 
 export const logout = () => {
-  localStorage.removeItem(STORAGE_NAME);
   return {
     type: FETCH_LOGOUT
   };

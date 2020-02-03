@@ -32,10 +32,6 @@ export const LoginForm = () => {
   const loginHandler = async () => {
     try {
       await dispatch(fetchLogin({...form}));
-      setForm({
-        email: '',
-        password: ''
-      });
     } catch (e) {}
   };
 
