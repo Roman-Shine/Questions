@@ -34,7 +34,7 @@ export const UserCard = ({ user }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 UserCard.propTypes = {

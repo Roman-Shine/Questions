@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchLogin, loginError } from '../../redux';
 import { useMessage } from '../../hooks/message.hook';
+import { StorageName } from "../../redux/login/loginTypes";
 
 export const LoginForm = () => {
   const loading = useSelector(state => state.login.loading);
@@ -17,6 +18,7 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (loginData) {
+      localStorage.setItem(StorageName, JSON.stringify(loginData));
       message('Успешная авторизация', 'teal');
     }
   }, [loginData, message]);

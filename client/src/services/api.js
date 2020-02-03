@@ -8,6 +8,7 @@ export const api = {
     list: '/api/users'
   },
   questions: {
-    postQuestion: '/api/questions/generate'
+    postQuestion: '/api/questions/generate',
+    list: '/api/questions'
   },
 };

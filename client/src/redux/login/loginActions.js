@@ -4,30 +4,21 @@ import {
   FETCH_LOGIN,
   FETCH_LOGOUT,
   FETCH_LOGIN_SUCCESS,
-  FETCH_LOGIN_ERROR,
-  StorageName
+  FETCH_LOGIN_ERROR
 } from './loginTypes';
 
 export const fetchLogin = (formData) => {
   return async (dispatch) => {
     dispatch(login());
-    const storageData = JSON.parse(localStorage.getItem(StorageName));
-    if (storageData && storageData.token) {
-      dispatch(loginSuccess(storageData));
-    } else if (formData) {
-      try {
-        const { data } = await axios({
-          url: api.auth.login,
-          method: 'POST',
-          data: {...formData}
-        });
-        localStorage.setItem(StorageName, JSON.stringify(data));
-        dispatch(loginSuccess(data));
-      } catch (error) {
-        dispatch(loginError(error.response.data.message || error.message));
-      }
-    } else {
-      dispatch(loginSuccess(null));
+    try {
+      const { data } = await axios({
+        url: api.auth.login,
+        method: 'POST',
+        data: {...formData}
+      });
+      dispatch(loginSuccess(data));
+    } catch (error) {
+      dispatch(loginError(error.response.data.message || error.message));
     }
   };
 };

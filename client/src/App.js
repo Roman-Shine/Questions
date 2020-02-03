@@ -5,7 +5,8 @@ import { NavBar } from './components/NavBar';
 import { Loader } from './components/Loader';
 import { useRoutes } from './routes';
 import 'materialize-css';
-import { fetchLogin } from "./redux";
+import { loginSuccess } from "./redux";
+import {StorageName} from "./redux/login/loginTypes";
 
 function App() {
   const loading = useSelector(state => state.login.loading);
@@ -16,7 +17,10 @@ function App() {
   const routes = useRoutes(isAuthenticated);
 
   useEffect(() => {
-    dispatch(fetchLogin());
+    const storageData = JSON.parse(localStorage.getItem(StorageName));
+    if (storageData && storageData.token) {
+      dispatch(loginSuccess(storageData));
+    }
   }, [dispatch]);
 
   if (loading) {

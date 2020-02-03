@@ -17,5 +17,5 @@ export const AuthPage = () => {
         <RegisterForm />
       </div>
     </div>
-  )
+  );
 };

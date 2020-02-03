@@ -1,5 +1,5 @@
 import React from 'react';
-import { UsersList } from '../../components/UsersList/UsersList';
+import { UsersList } from '../../modules/UsersList/UsersList';
 
 
 export const UsersPage = () => {
@@ -12,5 +12,5 @@ export const UsersPage = () => {
       </h5>
       <UsersList />
     </div>
-  )
+  );
 };
