@@ -9,7 +9,7 @@ import {
 
 const getInitialState = {
   loading: false,
-  questions: '',
+  questions: [],
   error: ''
 };
 
@@ -36,7 +36,7 @@ export const questionsReducer = (state = getInitialState, action) => {
       return {
         ...state,
         loading: false,
-        questions: '',
+        questions: [],
         error: action.payload
       };
     default: return state

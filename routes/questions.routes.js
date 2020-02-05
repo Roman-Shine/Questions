@@ -2,6 +2,7 @@ const { Router } = require('express');
 const auth = require('../middlewares/auth.middleware');
 const { check, validationResult } = require('express-validator');
 const Question = require('../models/Question');
+const User = require('../models/User');
 
 const router = Router();
 
@@ -27,6 +28,9 @@ router.post(
     const newQuestion = new Question({
       ...data
     });
+    const user = await User.findOne({ _id: newQuestion.owner });
+    user.questions.push(newQuestion._id);
+    await user.save();
     await newQuestion.save();
     res.status(201).json({ newQuestion });
   } catch (e) {

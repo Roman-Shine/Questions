@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import * as PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMessage } from '../../hooks/message.hook';
-import { fetchPostQuestion, postQuestionError } from '../../redux';
+import { fetchPostQuestion, postQuestionError, postQuestionSuccess } from '../../redux';
 
 export const QuestionForm = ({ _id }) => {
   const message = useMessage();
@@ -29,7 +29,8 @@ export const QuestionForm = ({ _id }) => {
     if (postQuestion) {
       message('Ваш вопрос отправлен, когда пользователь ответит на него, вы увидете его в списке ниже', 'teal');
     }
-  }, [postQuestion, message]);
+    dispatch(postQuestionSuccess(''));
+  }, [postQuestion, message, dispatch]);
 
   const inputHandler = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });

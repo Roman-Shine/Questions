@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
     const users = await User.find({});
     const userForResponse = users.map(user => {
       return {
-        email: user.email,
         login: user.login,
         name: user.name,
         secondName: user.secondName,
