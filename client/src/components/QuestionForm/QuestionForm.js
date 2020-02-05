@@ -68,7 +68,7 @@ export const QuestionForm = ({ _id }) => {
         <button
           className="btn teal"
           onClick={ submitQuestionHandler }
-          disabled={ loading }
+          disabled={ loading || formData.question.length <= 3 }
         >
           Задать вопрос
         </button>
