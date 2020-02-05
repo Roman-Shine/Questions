@@ -17,7 +17,7 @@ export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
     return (
       <div className="pt-2 questionsList">
         {questions.map((question) => {
-          return <QuestionsAnswersCard key={question._id} question={question}  isPrivate={onlyHasAnswer}/>;
+          return <QuestionsAnswersCard key={question._id} question={question}  isPrivate={!onlyHasAnswer}/>;
         })}
       </div>
     );
@@ -34,7 +34,7 @@ export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
     <div className="pt-2 questionsList">
       <h5 className="mt-0 mb-2">Ответы пользователя:</h5>
       {questions.map((question) => {
-        return <QuestionsAnswersCard key={question._id} question={question} isPrivate={onlyHasAnswer}/>;
+        return <QuestionsAnswersCard key={question._id} question={question} isPrivate={!onlyHasAnswer}/>;
       })}
     </div>
   );

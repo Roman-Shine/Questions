@@ -26,12 +26,15 @@ export const QuestionsAnswersCard = ({ question, isPrivate }) => {
         </div>
         <div className="card-action">
           <div className="row mb-0">
-            <div className="col s9">
-              {question.answer}
-            </div>
-            <div className="col s3 like-box">
-              <i className="material-icons">favorite</i> {question.likes}
-            </div>
+            {question.answer ? (
+              <div className="col s9">
+                {question.answer}
+              </div>
+            ) : (
+              <div className="col s12">
+                <AnswerForm updateQuestionHandler={updateQuestionHandler}/>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -47,22 +50,10 @@ export const QuestionsAnswersCard = ({ question, isPrivate }) => {
       </div>
       <div className="card-action">
         <div className="row mb-0">
-          {question.answer ? (
-            <>
-              <div className="col s9">
-                {question.answer}
-              </div>
-              <div className="col s3 like-box">
-                <i className="material-icons">favorite</i> {question.likes}
-              </div>
-            </>
-          ) : (
-            <div className="col s12">
-              <AnswerForm updateQuestionHandler={updateQuestionHandler}/>
-            </div>
-          )}
+          <div className="col s9">
+            {question.answer}
+          </div>
         </div>
-
       </div>
     </div>
   );
