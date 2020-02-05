@@ -5,6 +5,7 @@ import { QuestionsAnswersCard } from '../../components/QuestionsAnswersCard/Ques
 import './QuestionsAnswers.sass';
 
 export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
+
   if (!onlyHasAnswer) {
     if (!questions.length) {
       return (
@@ -21,6 +22,7 @@ export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
       </div>
     );
   }
+
   if (!questions.length) {
     return (
       <div className="pt-2 questionsList">
@@ -36,7 +38,6 @@ export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
       })}
     </div>
   );
-
 };
 
 UserCard.propTypes = {

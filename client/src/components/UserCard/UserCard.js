@@ -24,7 +24,7 @@ export const UserCard = ({ user }) => {
           <div className="mb-05">
             <p>{user.name} {user.secondName}</p>
           </div>
-          <p>Впоросов: { user.questions.length }</p>
+          <p>Ответов: { user.questions.length }</p>
         </div>
         <div className="card-action">
           <button

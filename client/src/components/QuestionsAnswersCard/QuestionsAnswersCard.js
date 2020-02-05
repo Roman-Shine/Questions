@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as PropTypes from 'prop-types';
+import { AnswerForm } from '../AnswerForm/AnswerForm';
 
 export const QuestionsAnswersCard = ({ question, isPrivate }) => {
+
+  const updateQuestionHandler = (str) => {
+    console.log(str)
+  };
+
+  useEffect(() => {
+    window.M.updateTextFields();
+  }, []);
+
   if (isPrivate) {
     return (
       <div className="card indigo lighten-5">
@@ -23,6 +33,7 @@ export const QuestionsAnswersCard = ({ question, isPrivate }) => {
       </div>
     );
   }
+
   return (
     <div className="card indigo lighten-5">
       <div className="card-content">
@@ -43,7 +54,7 @@ export const QuestionsAnswersCard = ({ question, isPrivate }) => {
             </>
           ) : (
             <div className="col s12">
-              <p>ЗДЕСЬ БУДЕТ КОМПОНЕНТ ФОРМЫ ДЛЯ ОТВЕТА</p>
+              <AnswerForm updateQuestionHandler={updateQuestionHandler}/>
             </div>
           )}
         </div>
