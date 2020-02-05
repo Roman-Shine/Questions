@@ -16,7 +16,11 @@ export const fetchUsers = () => {
       });
       dispatch(usersSuccess(data));
     } catch (error) {
-      dispatch(usersError(error.response.data.message || error.message));
+      if (error.response) {
+        dispatch(usersError(error.response.data.message));
+      } else {
+        dispatch(usersError(error.message));
+      }
     }
   };
 };

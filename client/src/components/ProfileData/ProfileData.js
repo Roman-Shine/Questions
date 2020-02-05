@@ -15,7 +15,7 @@ export const ProfileData = ({ login, name, secondName, questions }) => {
         <p>{name} {secondName}</p>
       </div>
       <div className="card-action">
-        <span>Впоросов: {questions.length}</span>
+        <span>Ответов: {questions.length}</span>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export const UsersList = () => {
       <div className="row">
         { users.map((user) => {
           return (
-            <UserCard user={user} key={user._id} />
+            (user._id && <UserCard user={user} key={user._id} />) || <p>Нет ни одного пользователя</p>
           );
         }) }
       </div>
