@@ -5,23 +5,7 @@ import { QuestionsAnswersCard } from '../../components/QuestionsAnswersCard/Ques
 import './QuestionsAnswers.sass';
 
 export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
-  if (onlyHasAnswer) {
-    if (!questions.length) {
-      return (
-        <div className="pt-2 questionsList">
-          <h5 className="mt-0">У данного пользователя пока нет ответов на вопросы</h5>
-        </div>
-      );
-    }
-    return (
-      <div className="pt-2 questionsList">
-        <h5 className="mt-0 mb-2">Ответы пользователя:</h5>
-        {questions.map((question) => {
-          return <QuestionsAnswersCard key={question._id} question={question} isPrivate={onlyHasAnswer}/>;
-        })}
-      </div>
-    );
-  } else {
+  if (!onlyHasAnswer) {
     if (!questions.length) {
       return (
         <div className="pt-2 questionsList">
@@ -31,13 +15,27 @@ export const QuestionsAnswers = ({ questions, onlyHasAnswer = true }) => {
     }
     return (
       <div className="pt-2 questionsList">
-        <h5 className="mt-0 mb-2">Ответы пользователя:</h5>
         {questions.map((question) => {
           return <QuestionsAnswersCard key={question._id} question={question}  isPrivate={onlyHasAnswer}/>;
         })}
       </div>
     );
   }
+  if (!questions.length) {
+    return (
+      <div className="pt-2 questionsList">
+        <h5 className="mt-0">У данного пользователя пока нет ответов на вопросы</h5>
+      </div>
+    );
+  }
+  return (
+    <div className="pt-2 questionsList">
+      <h5 className="mt-0 mb-2">Ответы пользователя:</h5>
+      {questions.map((question) => {
+        return <QuestionsAnswersCard key={question._id} question={question} isPrivate={onlyHasAnswer}/>;
+      })}
+    </div>
+  );
 
 };
 
