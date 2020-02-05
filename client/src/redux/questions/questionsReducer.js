@@ -4,7 +4,10 @@ import {
   FETCH_QUESTION_ERROR,
   FETCH_POST_QUESTION,
   FETCH_POST_QUESTION_SUCCESS,
-  FETCH_POST_QUESTION_ERROR
+  FETCH_POST_QUESTION_ERROR,
+  FETCH_PUT_QUESTION,
+  FETCH_PUT_QUESTION_SUCCESS,
+  FETCH_PUT_QUESTION_ERROR
 } from './questionsTypes';
 
 const getInitialState = {
@@ -17,6 +20,12 @@ const postInitialState = {
   postLoading: false,
   postQuestion: '',
   postError: ''
+};
+
+const putInitialState = {
+  putLoading: false,
+  putQuestion: '',
+  putError: ''
 };
 
 export const questionsReducer = (state = getInitialState, action) => {
@@ -62,6 +71,30 @@ export const postQuestionsReducer = (state = postInitialState, action) => {
         postLoading: false,
         postQuestion: '',
         postError: action.payload
+      };
+    default: return state
+  }
+};
+
+export const putQuestionsReducer = (state = putInitialState, action) => {
+  switch (action.type) {
+    case FETCH_PUT_QUESTION:
+      return {
+        ...state,
+        putLoading: true
+      };
+    case FETCH_PUT_QUESTION_SUCCESS:
+      return {
+        ...state,
+        putLoading: false,
+        putQuestion: action.payload
+      };
+    case FETCH_PUT_QUESTION_ERROR:
+      return {
+        ...state,
+        putLoading: false,
+        putQuestion: '',
+        putError: action.payload
       };
     default: return state
   }

@@ -14,7 +14,9 @@ export const QuestionsPage = () => {
 
   return (
     <div>
-      <h2>Ваши вопросы</h2>
+      <div>
+        <h2>Ваши вопросы</h2>
+      </div>
       <QuestionsAnswers questions={questions ? questions : []} onlyHasAnswer={false}/>
     </div>
   );

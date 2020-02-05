@@ -11,13 +11,14 @@ export const AnswerForm = ({ updateQuestionHandler }) => {
   };
   const updateHandler = () => {
     updateQuestionHandler(answer);
+    setAnswer('');
   };
 
   return (
     <div className="answerForm">
       <div className="input-field">
         <input
-          placeholder="Ваш вопрос:"
+          placeholder="Ваш Ответ:"
           id="question"
           type="text"
           name="question"
@@ -26,7 +27,6 @@ export const AnswerForm = ({ updateQuestionHandler }) => {
           value={answer}
           onChange={ inputHandler }
         />
-        <label htmlFor="question">Введите вопрос:</label>
       </div>
       <button
         className="btn teal"

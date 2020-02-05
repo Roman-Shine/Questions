@@ -1,16 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as PropTypes from 'prop-types';
 import { AnswerForm } from '../AnswerForm/AnswerForm';
+import { useDispatch } from 'react-redux';
+import {fetchPutQuestion, fetchQuestion} from '../../redux';
 
 export const QuestionsAnswersCard = ({ question, isPrivate }) => {
+  const dispatch = useDispatch();
 
-  const updateQuestionHandler = (str) => {
-    console.log(str)
+  const updateQuestionHandler = async (str) => {
+    const newData = {
+      ...question,
+      answer: str
+    };
+    await dispatch(fetchPutQuestion(newData));
+    await dispatch(fetchQuestion());
   };
-
-  useEffect(() => {
-    window.M.updateTextFields();
-  }, []);
 
   if (isPrivate) {
     return (

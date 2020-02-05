@@ -9,6 +9,7 @@ export const api = {
   },
   questions: {
     postQuestion: '/api/questions/generate',
+    putQuestion: '/api/questions/update',
     list: '/api/questions',
     new: '/api/questions/new-questions'
   },

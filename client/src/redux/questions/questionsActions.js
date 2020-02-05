@@ -6,7 +6,10 @@ import {
   FETCH_QUESTION_ERROR,
   FETCH_POST_QUESTION,
   FETCH_POST_QUESTION_SUCCESS,
-  FETCH_POST_QUESTION_ERROR
+  FETCH_POST_QUESTION_ERROR,
+  FETCH_PUT_QUESTION,
+  FETCH_PUT_QUESTION_SUCCESS,
+  FETCH_PUT_QUESTION_ERROR
 } from './questionsTypes';
 
 export const fetchQuestion = () => {
@@ -54,6 +57,29 @@ export const fetchPostQuestion = (formData) => {
   };
 };
 
+export const fetchPutQuestion = (formData) => {
+  return async (dispatch) => {
+    dispatch(putQuestion());
+    try {
+      const { data } = await axios({
+        url: api.questions.putQuestion,
+        method: 'PUT',
+        data: {...formData}
+      });
+      dispatch(putQuestionSuccess(data));
+    } catch (error) {
+      if (error.response.data.errors && error.response.data.errors.length) {
+        dispatch(putQuestionError(
+          error.response.data.errors[0].msg
+        ));
+      } else {
+        dispatch(putQuestionError(error.response.data.message || error.message));
+      }
+
+    }
+  };
+};
+
 export const question = () => {
   return {
     type: FETCH_QUESTIONS
@@ -90,6 +116,26 @@ export const postQuestionSuccess = (data) => {
 export const postQuestionError = (error) => {
   return {
     type: FETCH_POST_QUESTION_ERROR,
+    payload: error
+  }
+};
+
+export const putQuestion = () => {
+  return {
+    type: FETCH_PUT_QUESTION
+  }
+};
+
+export const putQuestionSuccess = (data) => {
+  return {
+    type: FETCH_PUT_QUESTION_SUCCESS,
+    payload: data
+  }
+};
+
+export const putQuestionError = (error) => {
+  return {
+    type: FETCH_PUT_QUESTION_ERROR,
     payload: error
   }
 };

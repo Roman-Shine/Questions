@@ -61,7 +61,7 @@ router.put(
       user.questions.push(updateQuestion._id);
       await user.save();
       await updateQuestion.save();
-      res.status(201).json({ newQuestion });
+      res.status(201).json({ updateQuestion });
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
     }

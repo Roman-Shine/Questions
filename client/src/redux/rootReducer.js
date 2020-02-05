@@ -5,6 +5,7 @@ import { usersReducer } from './users/usersReducer';
 import { userReducer } from './user/userReducer';
 import { questionsReducer } from './questions/questionsReducer';
 import { postQuestionsReducer } from './questions/questionsReducer';
+import { putQuestionsReducer } from './questions/questionsReducer';
 
 export const rootReducer = combineReducers({
   register: registerReducer,
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
   users: usersReducer,
   user: userReducer,
   questions: questionsReducer,
-  postQuestions: postQuestionsReducer
+  postQuestions: postQuestionsReducer,
+  putQuestions: putQuestionsReducer
 });
