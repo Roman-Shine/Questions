@@ -1,5 +1,5 @@
 import React from 'react';
-import { UsersList } from '../../modules/UsersList/UsersList';
+import { UsersList } from '../../containers/UsersList/UsersList';
 
 
 export const UsersPage = () => {

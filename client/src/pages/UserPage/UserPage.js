@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ProfileData } from '../../components/ProfileData/ProfileData';
+import { UserCard } from '../../components/UserCard/UserCard';
 import { QuestionForm } from '../../components/QuestionForm/QuestionForm';
 import { useMessage } from '../../hooks/message.hook';
 import { fetchUser } from '../../redux';
 import { Loader } from '../../components/Loader';
-import { QuestionsAnswers } from '../../modules/QuestionsAnswers/QuestionsAnswers';
+import { QuestionsAnswers } from '../../containers/QuestionsAnswers/QuestionsAnswers';
 
 export const UserPage = () => {
   const userData = useSelector(store => store.user.userData);
@@ -33,11 +33,12 @@ export const UserPage = () => {
   return (
     <div className="row">
       <div className="col s4">
-        <ProfileData
+        <UserCard
           login={userData ? userData.login : ''}
           name={userData ? userData.name : ''}
           secondName={userData ? userData.secondName : ''}
           questions={userData ? userData.questions : []}
+          isList={false}
         />
       </div>
       <div className="col s8">

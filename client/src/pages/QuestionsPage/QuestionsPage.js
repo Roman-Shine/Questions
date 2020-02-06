@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { fetchQuestion } from '../../redux';
-import { QuestionsAnswers } from '../../modules/QuestionsAnswers/QuestionsAnswers';
+import { QuestionsAnswers } from '../../containers/QuestionsAnswers/QuestionsAnswers';
 import { Loader } from '../../components/Loader';
 
 
